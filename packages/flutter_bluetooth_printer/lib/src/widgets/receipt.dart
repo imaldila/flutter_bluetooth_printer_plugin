@@ -112,7 +112,7 @@ class ReceiptState extends State<Receipt> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Container(
-                  padding: const EdgeInsets.all(24),
+                  // padding: const EdgeInsets.all(24),
                   color: Colors.white,
                   child: RepaintBoundary(
                     key: _localKey,
