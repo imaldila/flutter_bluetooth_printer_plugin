@@ -104,31 +104,28 @@ class ReceiptState extends State<Receipt> {
         clipBehavior: Clip.hardEdge,
         child: Container(
           alignment: Alignment.center,
-          child: FittedBox(
-            fit: BoxFit.fitWidth,
-            child: InteractiveViewer(
-              boundaryMargin: EdgeInsets.zero,
-              clipBehavior: Clip.none,
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                color: Colors.white,
-                child: RepaintBoundary(
-                  key: _localKey,
-                  child: Container(
-                    color: Colors.white,
-                    child: DefaultTextStyle.merge(
-                      style: widget.defaultTextStyle ??
-                          const TextStyle(
-                            fontSize: 24,
-                            height: 1.1,
-                            color: Colors.black,
-                            fontFamily: 'HermeneusOne',
-                            package: 'flutter_bluetooth_printer',
-                          ),
-                      child: SizedBox(
-                        width: _paperSize.width.toDouble(),
-                        child: Builder(builder: widget.builder),
-                      ),
+          child: InteractiveViewer(
+            boundaryMargin: EdgeInsets.zero,
+            clipBehavior: Clip.none,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              color: Colors.white,
+              child: RepaintBoundary(
+                key: _localKey,
+                child: Container(
+                  color: Colors.white,
+                  child: DefaultTextStyle.merge(
+                    style: widget.defaultTextStyle ??
+                        const TextStyle(
+                          fontSize: 24,
+                          height: 1.1,
+                          color: Colors.black,
+                          fontFamily: 'HermeneusOne',
+                          package: 'flutter_bluetooth_printer',
+                        ),
+                    child: SizedBox(
+                      width: _paperSize.width.toDouble(),
+                      child: Builder(builder: widget.builder),
                     ),
                   ),
                 ),
