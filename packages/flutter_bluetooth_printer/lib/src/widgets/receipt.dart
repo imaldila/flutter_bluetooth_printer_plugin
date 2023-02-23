@@ -50,6 +50,7 @@ class ReceiptController with ChangeNotifier {
 class Receipt extends StatefulWidget {
   final WidgetBuilder builder;
   final Color backgroundColor;
+  final double? height, width;
   final TextStyle? defaultTextStyle;
   final void Function(ReceiptController controller) onInitialized;
 
@@ -59,6 +60,8 @@ class Receipt extends StatefulWidget {
     this.backgroundColor = Colors.grey,
     required this.builder,
     required this.onInitialized,
+    this.height,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -104,28 +107,32 @@ class ReceiptState extends State<Receipt> {
         clipBehavior: Clip.hardEdge,
         child: Container(
           alignment: Alignment.center,
-          child: InteractiveViewer(
-            boundaryMargin: EdgeInsets.zero,
-            clipBehavior: Clip.none,
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              color: Colors.white,
-              child: RepaintBoundary(
-                key: _localKey,
-                child: Container(
-                  color: Colors.white,
-                  child: DefaultTextStyle.merge(
-                    style: widget.defaultTextStyle ??
-                        const TextStyle(
-                          fontSize: 24,
-                          height: 1.1,
-                          color: Colors.black,
-                          fontFamily: 'HermeneusOne',
-                          package: 'flutter_bluetooth_printer',
-                        ),
-                    child: SizedBox(
-                      width: _paperSize.width.toDouble(),
-                      child: Builder(builder: widget.builder),
+          child: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: InteractiveViewer(
+              boundaryMargin: EdgeInsets.zero,
+              clipBehavior: Clip.none,
+              child: Container(
+                padding: const EdgeInsets.all(24),
+                color: Colors.white,
+                child: RepaintBoundary(
+                  key: _localKey,
+                  child: Container(
+                    color: Colors.white,
+                    child: DefaultTextStyle.merge(
+                      style: widget.defaultTextStyle ??
+                          const TextStyle(
+                            fontSize: 24,
+                            height: 1.1,
+                            color: Colors.black,
+                            fontFamily: 'HermeneusOne',
+                            package: 'flutter_bluetooth_printer',
+                          ),
+                      child: SizedBox(
+                        height: widget.height,
+                        width: widget.width ?? _paperSize.width.toDouble(),
+                        child: Builder(builder: widget.builder),
+                      ),
                     ),
                   ),
                 ),
