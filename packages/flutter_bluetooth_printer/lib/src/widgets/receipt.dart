@@ -113,7 +113,7 @@ class ReceiptState extends State<Receipt> {
               boundaryMargin: EdgeInsets.zero,
               clipBehavior: Clip.none,
               child: Container(
-                padding: const EdgeInsets.all(24),
+                // padding: const EdgeInsets.all(24),
                 color: Colors.white,
                 child: RepaintBoundary(
                   key: _localKey,
